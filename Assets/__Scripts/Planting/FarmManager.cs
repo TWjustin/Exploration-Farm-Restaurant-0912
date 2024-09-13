@@ -13,13 +13,14 @@ public class FarmManager : MonoBehaviour
     public int columns = 7;
     public int rows = 3;
 
-    // plant
-    [HideInInspector] public CropSO selectedCrop;
-    [HideInInspector] public bool isPlanting = false;
+    
 
+    
     // 初始化地块
     private void Start()
     {
+        
+        
         InitializePlot();
         
     }
@@ -38,20 +39,6 @@ public class FarmManager : MonoBehaviour
             }
         }
     }
-
-    public void SelectCrop(CropSO newCrop)
-    {
-        if (selectedCrop == newCrop)
-        {
-            Debug.Log("Deselecting " + selectedCrop.name);
-            selectedCrop = null;
-            isPlanting = false;
-        }
-        else
-        {
-            selectedCrop = newCrop;
-            Debug.Log("Selected " + selectedCrop.name);
-            isPlanting = true;
-        }
-    }
+    
+    
 }

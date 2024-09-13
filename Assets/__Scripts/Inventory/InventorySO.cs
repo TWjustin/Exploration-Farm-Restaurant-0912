@@ -6,6 +6,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Inventory", menuName = "Inventory")]
 public class InventorySO : ScriptableObject
 {
+    
+    
     [Serializable]
     public class ItemSet
     {
@@ -13,7 +15,6 @@ public class InventorySO : ScriptableObject
         public int num;
     }
 
-    // public int maxSlotNum;
     public List<ItemSet> itemSets;
 
     private void OnEnable()
@@ -41,6 +42,7 @@ public class InventorySO : ScriptableObject
         };
         itemSets.Add(newItemSet);
     }
-    
 
+
+    
 }

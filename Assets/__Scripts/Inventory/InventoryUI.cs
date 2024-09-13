@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
+    
+    public ItemSO[] testItems;
+    
+    
+    
+    
     public InventorySO inventory;
     public GameObject slotPrefab;
     
@@ -30,6 +36,20 @@ public class InventoryUI : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+    }
+    
+    public void AddItem(ItemSO item, int num)
+    {
+        inventory.AddItem(item, num);
+        UpdateInven();
+    }
+    
+    
+    
+    public void Test()
+    {
+        AddItem(testItems[0], 15);
+        AddItem(testItems[1], 35);
     }
     
 }
