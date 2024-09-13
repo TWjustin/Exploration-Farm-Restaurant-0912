@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class FarmManager : MonoBehaviour
 {
-    public CropSO Obbbbb;
     
     public Transform plotParent;
     
@@ -23,9 +22,6 @@ public class FarmManager : MonoBehaviour
     {
         InitializePlot();
         
-        // 測試
-        SelectCrop(Obbbbb);
-        isPlanting = true;
     }
 
     private void InitializePlot()
@@ -47,14 +43,14 @@ public class FarmManager : MonoBehaviour
     {
         if (selectedCrop == newCrop)
         {
-            Debug.Log("Deselecting " + selectedCrop.cropName);
+            Debug.Log("Deselecting " + selectedCrop.name);
             selectedCrop = null;
             isPlanting = false;
         }
         else
         {
             selectedCrop = newCrop;
-            Debug.Log("Selected " + selectedCrop.cropName);
+            Debug.Log("Selected " + selectedCrop.name);
             isPlanting = true;
         }
     }

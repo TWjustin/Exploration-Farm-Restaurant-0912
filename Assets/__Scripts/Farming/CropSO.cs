@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Crop", menuName = "Items/Crop")]
 public class CropSO : ItemSO
 {
-    public string cropName;
     public Sprite[] plantStagesSprites;
     public float timeBtwStages;
 }

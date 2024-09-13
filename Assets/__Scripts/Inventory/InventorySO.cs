@@ -7,41 +7,40 @@ using UnityEngine;
 public class InventorySO : ScriptableObject
 {
     [Serializable]
-    public class ItemNum
+    public class ItemSet
     {
         public ItemSO item;
         public int num;
-        public int maxItemNum;
     }
 
-    public int maxSlotNum;
-    public ItemNum[] itemNums;
+    // public int maxSlotNum;
+    public List<ItemSet> itemSets;
 
-    private void Awake()
+    private void OnEnable()
     {
-        itemNums = new ItemNum[maxSlotNum];
+        itemSets = new List<ItemSet>();
     }
-
-    // todo: can add
 
     public void AddItem(ItemSO item, int num)
     {
 
-        foreach (var i in itemNums)
+        foreach (var i in itemSets)
         {
             if (i.item == item)
             {
                 i.num += num;
                 return;
             }
-            else if (i.item == null)
-            {
-                i.item = item;
-                i.num = num;
-                return;
-            }
         }
+        
 
+        ItemSet newItemSet = new ItemSet
+        {
+            item = item,
+            num = num
+        };
+        itemSets.Add(newItemSet);
     }
+    
 
 }

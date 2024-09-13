@@ -7,17 +7,29 @@ public class InventoryUI : MonoBehaviour
 {
     public InventorySO inventory;
     public GameObject slotPrefab;
-
+    
     private void Start()
     {
-        InitializeUI();
+        UpdateInven();
     }
 
-    private void InitializeUI()
+    private void UpdateInven()
     {
-        for (int i = 0; i < inventory.maxSlotNum; i++)
+        ClearInven();
+        
+        for (int i = 0; i < inventory.itemSets.Count; i++)
         {
-            Instantiate(slotPrefab, transform);
+            GameObject slot = Instantiate(slotPrefab, transform);
+            slot.GetComponent<SlotUI>().UpdateSlot(inventory.itemSets[i].item, inventory.itemSets[i].num);
         }
     }
+    
+    private void ClearInven()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+    
 }
