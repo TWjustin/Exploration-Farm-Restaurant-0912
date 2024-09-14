@@ -14,12 +14,12 @@ public class InventoryUI : MonoBehaviour
     public InventorySO inventory;
     public GameObject slotPrefab;
     
-    private void Start()
+    private void OnEnable()
     {
         UpdateInven();
     }
 
-    private void UpdateInven()
+    public void UpdateInven()
     {
         ClearInven();
         
@@ -38,18 +38,13 @@ public class InventoryUI : MonoBehaviour
         }
     }
     
-    public void AddItem(ItemSO item, int num)
-    {
-        inventory.AddItem(item, num);
-        UpdateInven();
-    }
-    
     
     
     public void Test()
     {
-        AddItem(testItems[0], 15);
-        AddItem(testItems[1], 35);
+        inventory.AddItem(testItems[0], 15);
+        inventory.AddItem(testItems[1], 23);
+        UpdateInven();
     }
     
 }

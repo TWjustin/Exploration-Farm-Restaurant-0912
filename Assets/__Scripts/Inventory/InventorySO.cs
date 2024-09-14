@@ -21,6 +21,7 @@ public class InventorySO : ScriptableObject
     {
         itemSets = new List<ItemSet>();
     }
+    
 
     public void AddItem(ItemSO item, int num)
     {
@@ -40,9 +41,28 @@ public class InventorySO : ScriptableObject
             item = item,
             num = num
         };
+        
         itemSets.Add(newItemSet);
     }
 
+    
+    public void RemoveItem(ItemSO item, int num)    // 沒有maxStack
+    {
+        foreach (var i in itemSets)
+        {
+            if (i.item == item)
+            {
+                i.num -= num;
+                if (i.num <= 0)
+                {
+                    itemSets.Remove(i);
+                }
+                
+                return;
+            }
+        }
+        
+    }
 
     
 }

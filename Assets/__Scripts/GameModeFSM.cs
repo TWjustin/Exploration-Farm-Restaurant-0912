@@ -10,20 +10,33 @@ public enum GameMode
     Default,
     PlantMenu,
     Plant,
+    Harvest,
 }
 
 public class GameModeFSM : MonoBehaviour
 {
     public GameMode currentMode;
     
+    
+    // default mode
     public Button plantMenuButton;
+    public Button harvestButton;
+    
+    // plant menu mode
     public Button backButtonInPlantMenuMode;
+    
+    // plant mode
     public Button backButtonInPlantMode;
-    public Button doneButton;
+    public Button doneButtonInPlantMode;
+    
+    // harvest mode
+    public Button harvestDoneButton;
+    
     
     public GameObject plantMenu;
     public GameObject plantBtnParent;
-    public GameObject plantMenuBtnGO;
+    public GameObject mainBtnParent;
+    public GameObject harvestDoneBtnGO;
     
     [HideInInspector] public CropSO selectedCrop;
     
@@ -51,9 +64,11 @@ public class GameModeFSM : MonoBehaviour
     private void Start()
     {
         plantMenuButton.onClick.AddListener(() => ChangeGameMode(GameMode.PlantMenu));
+        harvestButton.onClick.AddListener(() => ChangeGameMode(GameMode.Harvest));
         backButtonInPlantMenuMode.onClick.AddListener(() => ChangeGameMode(GameMode.Default));
         backButtonInPlantMode.onClick.AddListener(() => ChangeGameMode(GameMode.PlantMenu));
-        doneButton.onClick.AddListener(() => ChangeGameMode(GameMode.Default));
+        doneButtonInPlantMode.onClick.AddListener(() => ChangeGameMode(GameMode.Default));
+        harvestDoneButton.onClick.AddListener(() => ChangeGameMode(GameMode.Default));
         
         ChangeGameMode(GameMode.Default);
     }
@@ -76,6 +91,9 @@ public class GameModeFSM : MonoBehaviour
             case GameMode.Plant:
                 EnterPlantMode();
                 break;
+            case GameMode.Harvest:
+                EnterHarvestMode();
+                break;
         }
     }
     
@@ -83,20 +101,27 @@ public class GameModeFSM : MonoBehaviour
     {
         plantMenu.SetActive(false);
         plantBtnParent.SetActive(false);
-        plantMenuBtnGO.SetActive(true);
+        mainBtnParent.SetActive(true);
+        harvestDoneBtnGO.SetActive(false);
     }
     
     private void EnterPlantMenuMode()
     {
         plantMenu.SetActive(true);
         plantBtnParent.SetActive(false);
-        plantMenuBtnGO.SetActive(false);
+        mainBtnParent.SetActive(false);
     }
     
     private void EnterPlantMode()
     {
         plantMenu.SetActive(false);
         plantBtnParent.SetActive(true);
-        plantMenuBtnGO.SetActive(false);
+        mainBtnParent.SetActive(false);
+    }
+    
+    private void EnterHarvestMode()
+    {
+        mainBtnParent.SetActive(false);
+        harvestDoneBtnGO.SetActive(true);
     }
 }

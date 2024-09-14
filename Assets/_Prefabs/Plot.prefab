@@ -104,6 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0147b1f5a8271e244990e3f1837eeba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 11400000, guid: 3cf48d1f873aa0f469ecb6061a29e56c, type: 2}
   plant: {fileID: 5557591228894600527}
 --- !u!50 &5073780482099167778
 Rigidbody2D:

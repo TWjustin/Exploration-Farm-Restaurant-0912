@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Plot : MonoBehaviour
 {
+    public InventorySO inventory;
+    
     private CropSO crop;
 
     private bool isPlanted = false;
@@ -20,21 +22,40 @@ public class Plot : MonoBehaviour
 
     private void OnMouseDown()  //
     {
-        if (isPlanted)
+        switch (GameModeFSM.Instance.currentMode)
         {
-            if (currentStage == crop.plantStagesSprites.Length - 1)
-            {
-                Harvest();
-            }
-            else
-            {
-                Debug.Log("Plant is not ready yet");
-            }
+            case GameMode.Plant:
+                if (!isPlanted)
+                {
+                    Plant(GameModeFSM.Instance.selectedCrop);
+                    inventory.RemoveItem(GameModeFSM.Instance.selectedCrop, 1);
+                }
+                else
+                {
+                    Debug.Log("Plot is already planted");
+                }
+                break;
+            case GameMode.Harvest:
+                if (isPlanted)
+                {
+                    if (currentStage == crop.plantStagesSprites.Length - 1)
+                    {
+                        Harvest();
+                    }
+                    else
+                    {
+                        Debug.Log("Plant is not ready yet");
+                    }
+                }
+                else
+                {
+                    Debug.Log("Plot is empty");
+                }
+                break;
+            default:
+                break;
         }
-        else if (GameModeFSM.Instance.currentMode == GameMode.Plant)
-        {
-            Plant(GameModeFSM.Instance.selectedCrop);
-        }
+        
     }
 
     private void Update()
