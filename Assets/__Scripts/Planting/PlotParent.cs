@@ -3,16 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FarmManager : MonoBehaviour
+public class PlotParent : MonoBehaviour
 {
-    
-    public Transform plotParent;
     
     public GameObject plotPrefab;
     public Vector2 startPos;
     public int columns = 7;
     public int rows = 3;
-
     
 
     
@@ -27,7 +24,7 @@ public class FarmManager : MonoBehaviour
 
     private void InitializePlot()
     {
-        startPos = plotParent.position;
+        startPos = transform.position;
         
         for (int i = 0; i < columns; i++)
         {
@@ -35,10 +32,12 @@ public class FarmManager : MonoBehaviour
             {
                 Vector2 pos = new Vector2(startPos.x + i * 2f, startPos.y - j * 2f);
                 GameObject plot = Instantiate(plotPrefab, pos, Quaternion.identity);
-                plot.transform.SetParent(plotParent);
+                plot.transform.SetParent(transform);
             }
         }
     }
+
+    
     
     
 }

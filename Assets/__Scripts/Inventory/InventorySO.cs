@@ -16,11 +16,6 @@ public class InventorySO : ScriptableObject
     }
 
     public List<ItemSet> itemSets;
-
-    private void OnEnable()
-    {
-        itemSets = new List<ItemSet>();
-    }
     
 
     public void AddItem(ItemSO item, int num)
@@ -46,21 +41,24 @@ public class InventorySO : ScriptableObject
     }
 
     
-    public void RemoveItem(ItemSO item, int num)    // 沒有maxStack
+    public bool RemoveItem(ItemSO item, int num)    // 沒有maxStack
     {
         foreach (var i in itemSets)
         {
             if (i.item == item)
             {
                 i.num -= num;
-                if (i.num <= 0)
+                if (i.num < 0)
                 {
                     itemSets.Remove(i);
+                    return false;
                 }
                 
-                return;
+                return true;
             }
         }
+        
+        return false;
         
     }
 

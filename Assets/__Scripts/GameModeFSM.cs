@@ -41,6 +41,10 @@ public class GameModeFSM : MonoBehaviour
     [HideInInspector] public CropSO selectedCrop;
     
     
+    public event Action OnEnterPlantMode;
+    public event Action OnEnterHarvestMode;
+    
+    
     #region Singleton
 
     public static GameModeFSM Instance { get; set; }
@@ -117,11 +121,15 @@ public class GameModeFSM : MonoBehaviour
         plantMenu.SetActive(false);
         plantBtnParent.SetActive(true);
         mainBtnParent.SetActive(false);
+        
+        OnEnterPlantMode?.Invoke();
     }
     
     private void EnterHarvestMode()
     {
         mainBtnParent.SetActive(false);
         harvestDoneBtnGO.SetActive(true);
+        
+        OnEnterHarvestMode?.Invoke();
     }
 }

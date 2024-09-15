@@ -9,15 +9,24 @@ public class Plot : MonoBehaviour
     
     private CropSO crop;
 
-    private bool isPlanted = false;
     public SpriteRenderer plant;    // 植物體子物件
+    public bool isPlanted = false;
+    public bool isRipe = false;
 
     private int currentStage = 0;
     private float timer;
+    
+    public Material normalMat;
+    public Material outlineMat;
+    
+    
 
     private void Start()
     {
         plant.gameObject.SetActive(false);
+
+        GameModeFSM.Instance.OnEnterPlantMode += HighLightIfAvailable;
+        GameModeFSM.Instance.OnEnterHarvestMode += HighLightIfRipe;
     }
 
     private void OnMouseDown()  //
@@ -27,8 +36,12 @@ public class Plot : MonoBehaviour
             case GameMode.Plant:
                 if (!isPlanted)
                 {
-                    Plant(GameModeFSM.Instance.selectedCrop);
-                    inventory.RemoveItem(GameModeFSM.Instance.selectedCrop, 1);
+                    bool available = inventory.RemoveItem(GameModeFSM.Instance.selectedCrop, 1);
+
+                    if (available)
+                    {
+                        Plant(GameModeFSM.Instance.selectedCrop);
+                    }
                 }
                 else
                 {
@@ -38,7 +51,7 @@ public class Plot : MonoBehaviour
             case GameMode.Harvest:
                 if (isPlanted)
                 {
-                    if (currentStage == crop.plantStagesSprites.Length - 1)
+                    if (isRipe)
                     {
                         Harvest();
                     }
@@ -64,7 +77,9 @@ public class Plot : MonoBehaviour
         {
             timer -= Time.deltaTime;
 
-            if (timer <= 0 && currentStage < crop.plantStagesSprites.Length - 1)
+            isRipe = currentStage == crop.plantStagesSprites.Length - 1;
+            
+            if (timer <= 0 && !isRipe)
             {
                 timer = crop.timeBtwStages;
                 currentStage++;
@@ -72,6 +87,23 @@ public class Plot : MonoBehaviour
             }
         }
     }
+    
+    private void HighLightIfAvailable()
+    {
+        if (!isPlanted)
+        {
+            ChangeMat(transform, outlineMat);
+        }
+    }
+    
+    private void HighLightIfRipe()
+    {
+        if (isRipe)
+        {
+            ChangeMat(transform.GetChild(0), outlineMat);
+        }
+    }
+    
 
     private void Plant(CropSO newCrop)
     {
@@ -81,6 +113,7 @@ public class Plot : MonoBehaviour
         UpdatePlant();
         timer = crop.timeBtwStages;
         plant.gameObject.SetActive(true);
+        ChangeMat(transform, normalMat);
     }
 
     private void UpdatePlant()
@@ -91,8 +124,16 @@ public class Plot : MonoBehaviour
     private void Harvest()
     {
         isPlanted = false;
+        isRipe = false;
         plant.gameObject.SetActive(false);
+        crop = null;
+        ChangeMat(transform.GetChild(0), normalMat);
     }
-
-
+    
+    
+    private void ChangeMat(Transform tf, Material mat)
+    {
+        SpriteRenderer sr = tf.GetComponent<SpriteRenderer>();
+        sr.material = mat;
+    }
 }

@@ -12,11 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e229063630ade49a37a05733d855d6, type: 3}
   m_Name: StorageInventory
   m_EditorClassIdentifier: 
-  testItems:
-  - {fileID: 11400000, guid: 1d61e3a3cd37a4445bcc0a5fe4aa28cd, type: 2}
-  - {fileID: 11400000, guid: 25992bc34106ea842bb6bbff6f404fc1, type: 2}
   itemSets:
   - item: {fileID: 11400000, guid: 1d61e3a3cd37a4445bcc0a5fe4aa28cd, type: 2}
-    num: 15
+    num: 9
   - item: {fileID: 11400000, guid: 25992bc34106ea842bb6bbff6f404fc1, type: 2}
-    num: 35
+    num: 23

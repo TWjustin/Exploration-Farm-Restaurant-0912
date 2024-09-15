@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Carrot
   m_EditorClassIdentifier: 
   itemName: 
-  icon: {fileID: 21300000, guid: e38f8d443220f294b96f6623528f81d2, type: 3}
+  icon: {fileID: 1547115274, guid: f8179fa7da0c17842a606eebf70b8480, type: 3}
   price: 0
   itemType: 0
   maxStack: 0
-  cropName: Carrot
   plantStagesSprites:
-  - {fileID: 21300000, guid: e2583896fc4b0794abe05ba70f9ee951, type: 3}
-  - {fileID: 21300000, guid: dd1a5bd9f8ace5042a6ba21e70cd522a, type: 3}
-  - {fileID: 21300000, guid: e38f8d443220f294b96f6623528f81d2, type: 3}
+  - {fileID: 1717746698, guid: f8179fa7da0c17842a606eebf70b8480, type: 3}
+  - {fileID: -1683667247, guid: f8179fa7da0c17842a606eebf70b8480, type: 3}
+  - {fileID: -769872058, guid: f8179fa7da0c17842a606eebf70b8480, type: 3}
+  - {fileID: 977077694, guid: f8179fa7da0c17842a606eebf70b8480, type: 3}
   timeBtwStages: 1
