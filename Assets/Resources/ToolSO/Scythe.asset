@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18ba7391be19c344e80f6259e8cd8c2b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a31a49a3542e864e892fecc657cec1b, type: 3}
   m_Name: Scythe
   m_EditorClassIdentifier: 
   itemName: 
-  icon: {fileID: -717381258, guid: b816c2a0a31fb7447bb589d3f34509e4, type: 3}
+  icon: {fileID: -417034049, guid: b816c2a0a31fb7447bb589d3f34509e4, type: 3}
   price: 0
   itemType: 0
   stackable: 0
-  toolType: 1
+  toolType: 0
   strength: 0
   efficiency: 0
-  durability: 0
+  durability: -1

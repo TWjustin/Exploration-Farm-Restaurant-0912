@@ -28,7 +28,8 @@ public class InventorySO : ScriptableObject
         ItemSet newItemSet = new ItemSet
         {
             item = item,
-            num = num
+            num = num, 
+            durability = item is ToolSO tool ? tool.durability : 0
         };
         
         itemSets.Add(newItemSet);
@@ -56,6 +57,20 @@ public class InventorySO : ScriptableObject
         return false;
         
     }
+    
+    public ItemSet FindItemSet(ItemSO item)
+    {
+        foreach (var i in itemSets)
+        {
+            if (i.item == item)
+            {
+                return i;
+            }
+        }
+
+        Debug.Log("Item not found");
+        return null;
+    }
 
     
 }
@@ -65,4 +80,5 @@ public class ItemSet
 {
     public ItemSO item;
     public int num;
+    public int durability;
 }

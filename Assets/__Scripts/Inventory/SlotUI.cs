@@ -17,13 +17,15 @@ public class SlotUI : MonoBehaviour
     private void Start()
     {
         button = GetComponent<Button>();
+        
+        // todo: for farm
         button.onClick.AddListener(() => FarmModeFSM.Instance.ChangeGameMode(GameMode.Plant));
         button.onClick.AddListener(SelectThisCrop);
     }
     
     private void SelectThisCrop()
     {
-        FarmModeFSM.Instance.selectedCrop = (CropSO) item;
+        FarmModeFSM.Instance.selectedCrop = item as CropSO;
         Debug.Log("Selected " + item.name);
     }
     
@@ -31,7 +33,16 @@ public class SlotUI : MonoBehaviour
     {
         this.item = item;
         icon.sprite = item.icon;
-        numText.text = num.ToString();
+
+        if (item.stackable)
+        {
+            numText.text = num.ToString();
+        }
+        else
+        {
+            numText.text = "";
+        }
+        
     }
     
 }

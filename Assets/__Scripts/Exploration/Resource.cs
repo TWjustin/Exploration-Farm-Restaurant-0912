@@ -4,16 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-// [Serializable]
-// public struct DropItemSet
-// {
-//     public ItemSO item;
-//     public int num;
-// }
+public enum ResourceType
+{
+    Default,
+    Tree,
+    Rock,
+    Bush,   // 小植物
+    Animal,
+}
 
 public class Resource : MonoBehaviour
 {
-    public ToolSO requiredTool;
+    public ResourceType resourceType;
     
     
     public List<ItemSet> dropItems;
@@ -21,6 +23,6 @@ public class Resource : MonoBehaviour
 
     private void Start()
     {
-        gameObject.layer = LayerMask.NameToLayer("Interactable");
+        gameObject.tag = "Interactable";
     }
 }

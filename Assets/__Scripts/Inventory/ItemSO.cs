@@ -11,8 +11,6 @@ public class ItemSO : ScriptableObject
     
     public ItemType itemType;
     
-    // public int maxStack;
-    [Header("Exploration")]
     public bool stackable;
 }
 

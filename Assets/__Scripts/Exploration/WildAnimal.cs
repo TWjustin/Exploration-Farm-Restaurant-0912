@@ -21,6 +21,7 @@ public class WildAnimal : Resource
 
     private void Start()
     {
+        resourceType = ResourceType.Animal;
         
         GameObject hpBar = Instantiate(hpBarPrefab, transform.position + Vector3.up * hpBarOffset, Quaternion.identity);
         hpBar.transform.SetParent(transform);

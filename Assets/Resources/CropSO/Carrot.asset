@@ -16,6 +16,7 @@ MonoBehaviour:
   icon: {fileID: -600979343, guid: f8179fa7da0c17842a606eebf70b8480, type: 3}
   price: 0
   itemType: 0
+  stackable: 1
   plantStagesSprites:
   - {fileID: 147342142, guid: f8179fa7da0c17842a606eebf70b8480, type: 3}
   - {fileID: 962929852, guid: f8179fa7da0c17842a606eebf70b8480, type: 3}

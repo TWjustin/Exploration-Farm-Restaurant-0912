@@ -10,5 +10,6 @@ public class ExploGameManager : MonoBehaviour
     private void Start()
     {
         inventoryGameObject.SetActive(false);
+        inventoryGameObject.GetComponentInChildren<InventoryUI>().inventory.itemSets = new List<ItemSet>();
     }
 }

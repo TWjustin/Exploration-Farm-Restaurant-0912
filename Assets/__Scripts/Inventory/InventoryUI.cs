@@ -19,11 +19,7 @@ public class InventoryUI : MonoBehaviour
     {
         UpdateInven();
     }
-
-    private void Awake()
-    {
-        inventory.itemSets.Clear();
-    }
+    
 
     public void UpdateInven()
     {
