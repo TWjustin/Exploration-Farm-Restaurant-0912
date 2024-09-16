@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: Carrot
   m_EditorClassIdentifier: 
   itemName: 
-  icon: {fileID: 1547115274, guid: f8179fa7da0c17842a606eebf70b8480, type: 3}
+  icon: {fileID: -600979343, guid: f8179fa7da0c17842a606eebf70b8480, type: 3}
   price: 0
   itemType: 0
-  maxStack: 0
   plantStagesSprites:
-  - {fileID: 1717746698, guid: f8179fa7da0c17842a606eebf70b8480, type: 3}
-  - {fileID: -1683667247, guid: f8179fa7da0c17842a606eebf70b8480, type: 3}
-  - {fileID: -769872058, guid: f8179fa7da0c17842a606eebf70b8480, type: 3}
-  - {fileID: 977077694, guid: f8179fa7da0c17842a606eebf70b8480, type: 3}
+  - {fileID: 147342142, guid: f8179fa7da0c17842a606eebf70b8480, type: 3}
+  - {fileID: 962929852, guid: f8179fa7da0c17842a606eebf70b8480, type: 3}
+  - {fileID: 742883222, guid: f8179fa7da0c17842a606eebf70b8480, type: 3}
+  - {fileID: -312159320, guid: f8179fa7da0c17842a606eebf70b8480, type: 3}
   timeBtwStages: 1
+  product: {fileID: 11400000, guid: 89dc49f8e38e5aa48a7f59fd72993fb6, type: 2}
+  productNum: 1

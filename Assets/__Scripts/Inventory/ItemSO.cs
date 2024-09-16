@@ -10,14 +10,16 @@ public class ItemSO : ScriptableObject
     public int price;
     
     public ItemType itemType;
-    public int maxStack;
+    
+    // public int maxStack;
+    [Header("Exploration")]
+    public bool stackable;
 }
 
 public enum ItemType
 {
     Default,
-    Crop,
+    RawMaterial,
     Seed,
     Tool,
-    Other
 }

@@ -888,7 +888,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   testItems:
   - {fileID: 11400000, guid: 1d61e3a3cd37a4445bcc0a5fe4aa28cd, type: 2}
-  - {fileID: 11400000, guid: 25992bc34106ea842bb6bbff6f404fc1, type: 2}
   inventory: {fileID: 11400000, guid: 3cf48d1f873aa0f469ecb6061a29e56c, type: 2}
   slotPrefab: {fileID: 8805238064749298491, guid: 34cb55bf1f529c44f9e61ece433a3a04, type: 3}
 --- !u!1 &456709003
@@ -1317,7 +1316,7 @@ Transform:
   m_GameObject: {fileID: 742544427}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -60, y: 1.1, z: 0}
+  m_LocalPosition: {x: -6, y: 1.1, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children: []

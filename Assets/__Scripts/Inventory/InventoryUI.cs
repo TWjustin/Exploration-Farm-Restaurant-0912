@@ -20,7 +20,7 @@ public class InventoryUI : MonoBehaviour
         UpdateInven();
     }
 
-    private void Start()
+    private void Awake()
     {
         inventory.itemSets.Clear();
     }
@@ -48,8 +48,7 @@ public class InventoryUI : MonoBehaviour
     
     public void Test()
     {
-        inventory.AddItem(testItems[0], 5);
-        inventory.AddItem(testItems[1], 23);
+        inventory.AddItem(testItems[0], 9);
         UpdateInven();
     }
     

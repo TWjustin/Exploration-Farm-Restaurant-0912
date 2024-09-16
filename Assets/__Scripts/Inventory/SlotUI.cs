@@ -17,13 +17,13 @@ public class SlotUI : MonoBehaviour
     private void Start()
     {
         button = GetComponent<Button>();
-        button.onClick.AddListener(() => GameModeFSM.Instance.ChangeGameMode(GameMode.Plant));
+        button.onClick.AddListener(() => FarmModeFSM.Instance.ChangeGameMode(GameMode.Plant));
         button.onClick.AddListener(SelectThisCrop);
     }
     
     private void SelectThisCrop()
     {
-        GameModeFSM.Instance.selectedCrop = (CropSO) item;
+        FarmModeFSM.Instance.selectedCrop = (CropSO) item;
         Debug.Log("Selected " + item.name);
     }
     

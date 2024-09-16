@@ -3,24 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Inventory", menuName = "Inventory")]
+[CreateAssetMenu(fileName = "New Inventory", menuName = "Inventory/Inventory")]
 public class InventorySO : ScriptableObject
 {
     
     
-    [Serializable]
-    public class ItemSet
-    {
-        public ItemSO item;
-        public int num;
-    }
-
-    public List<ItemSet> itemSets;
     
 
-    public void AddItem(ItemSO item, int num)
-    {
+    public List<ItemSet> itemSets;
 
+
+    public virtual void AddItem(ItemSO item, int num)
+    {
+        
         foreach (var i in itemSets)
         {
             if (i.item == item)
@@ -29,7 +24,6 @@ public class InventorySO : ScriptableObject
                 return;
             }
         }
-        
 
         ItemSet newItemSet = new ItemSet
         {
@@ -41,7 +35,8 @@ public class InventorySO : ScriptableObject
     }
 
     
-    public bool RemoveItem(ItemSO item, int num)    // 沒有maxStack
+    // bool邏輯沒問題
+    public virtual bool RemoveItem(ItemSO item, int num)    // 沒有maxStack
     {
         foreach (var i in itemSets)
         {
@@ -63,4 +58,11 @@ public class InventorySO : ScriptableObject
     }
 
     
+}
+
+[Serializable]
+public class ItemSet
+{
+    public ItemSO item;
+    public int num;
 }

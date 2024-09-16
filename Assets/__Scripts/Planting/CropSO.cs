@@ -7,4 +7,7 @@ public class CropSO : ItemSO
 {
     public Sprite[] plantStagesSprites;
     public float timeBtwStages;
+    
+    public RawMaterialSO product;
+    public int productNum;
 }

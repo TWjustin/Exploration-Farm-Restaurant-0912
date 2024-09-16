@@ -13,7 +13,7 @@ public enum GameMode
     Harvest,
 }
 
-public class GameModeFSM : MonoBehaviour
+public class FarmModeFSM : MonoBehaviour
 {
     public GameMode currentMode;
     
@@ -47,7 +47,7 @@ public class GameModeFSM : MonoBehaviour
     
     #region Singleton
 
-    public static GameModeFSM Instance { get; set; }
+    public static FarmModeFSM Instance { get; set; }
 
     private void Awake()
     {

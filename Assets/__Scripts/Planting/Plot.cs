@@ -25,22 +25,22 @@ public class Plot : MonoBehaviour
     {
         plant.gameObject.SetActive(false);
 
-        GameModeFSM.Instance.OnEnterPlantMode += HighLightIfAvailable;
-        GameModeFSM.Instance.OnEnterHarvestMode += HighLightIfRipe;
+        FarmModeFSM.Instance.OnEnterPlantMode += HighLightIfAvailable;
+        FarmModeFSM.Instance.OnEnterHarvestMode += HighLightIfRipe;
     }
 
     private void OnMouseDown()  //
     {
-        switch (GameModeFSM.Instance.currentMode)
+        switch (FarmModeFSM.Instance.currentMode)
         {
             case GameMode.Plant:
                 if (!isPlanted)
                 {
-                    bool available = inventory.RemoveItem(GameModeFSM.Instance.selectedCrop, 1);
+                    bool available = inventory.RemoveItem(FarmModeFSM.Instance.selectedCrop, 1);
 
                     if (available)
                     {
-                        Plant(GameModeFSM.Instance.selectedCrop);
+                        Plant(FarmModeFSM.Instance.selectedCrop);
                     }
                 }
                 else
@@ -48,12 +48,15 @@ public class Plot : MonoBehaviour
                     Debug.Log("Plot is already planted");
                 }
                 break;
+            
             case GameMode.Harvest:
                 if (isPlanted)
                 {
                     if (isRipe)
                     {
+                        inventory.AddItem(crop.product, crop.productNum);
                         Harvest();
+                        
                     }
                     else
                     {
@@ -65,6 +68,7 @@ public class Plot : MonoBehaviour
                     Debug.Log("Plot is empty");
                 }
                 break;
+            
             default:
                 break;
         }
