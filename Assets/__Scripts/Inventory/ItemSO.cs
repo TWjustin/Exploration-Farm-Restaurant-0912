@@ -12,6 +12,12 @@ public class ItemSO : ScriptableObject
     public ItemType itemType;
     
     public bool stackable;
+
+
+    public virtual void Use()
+    {
+        
+    }
 }
 
 public enum ItemType

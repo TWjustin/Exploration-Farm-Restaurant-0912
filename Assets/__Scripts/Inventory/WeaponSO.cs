@@ -12,14 +12,5 @@ public enum WeaponType
 public class WeaponSO : ToolSO
 {
     public WeaponType weaponType;
-
-    public override void Use(Resource resource)
-    {
-        
-    }
-
-    protected virtual void Attack(WildAnimal animal)
-    {
-        
-    }
+    
 }

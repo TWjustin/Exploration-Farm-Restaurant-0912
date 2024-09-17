@@ -4,39 +4,68 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class SlotUI : MonoBehaviour
 {
-    private ItemSO item;
+    
+    
+    public ItemSet itemSet;
 
     
     public Image icon;
     public TextMeshProUGUI numText;
-    private Button button;
+    protected Button button;
     
-    private void Start()
+    
+    
+    protected virtual void Start()
     {
+        
         button = GetComponent<Button>();
         
-        // todo: for farm
-        button.onClick.AddListener(() => FarmModeFSM.Instance.ChangeGameMode(GameMode.Plant));
-        button.onClick.AddListener(SelectThisCrop);
+        string sceneName = SceneManager.GetActiveScene().name;
+        switch (sceneName)
+        {
+            case "FarmScene":
+                
+                button.onClick.AddListener(SelectCrop);
+                break;
+            
+            case "ExplorationScene":
+                
+                button.onClick.AddListener(() => ExploGameManager.Instance.OpenOptionPanel(this));
+                break;
+            
+            case "AnimalScene":
+                
+                break;
+        }
+        
+        
     }
     
-    private void SelectThisCrop()
+    private void SelectCrop()
     {
+        FarmModeFSM.Instance.ChangeGameMode(GameMode.Plant);
+        
+        ItemSO item = itemSet.item;
         FarmModeFSM.Instance.selectedCrop = item as CropSO;
         Debug.Log("Selected " + item.name);
     }
     
-    public void UpdateSlot(ItemSO item, int num)
+    
+    
+    public void UpdateSlot(ItemSet i)
     {
-        this.item = item;
+        ItemSO item = i.item;
+        
+        itemSet = i;
         icon.sprite = item.icon;
 
         if (item.stackable)
         {
-            numText.text = num.ToString();
+            numText.text = i.num.ToString();
         }
         else
         {

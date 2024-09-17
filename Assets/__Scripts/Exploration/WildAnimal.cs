@@ -68,4 +68,16 @@ public class WildAnimal : Resource
     }
     
     
+    
+    
+    
+    
+    protected override void DoWhenHpZero()
+    {
+        // faint
+        
+        // capture
+    }
+    
+    
 }

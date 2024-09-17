@@ -31,23 +31,24 @@ public class Resource : MonoBehaviour
     {
         gameObject.tag = "Interactable";
 
-        // if (hp > 1)
-        // {
-        //     hpBar = Instantiate(hpBarPrefab, transform.position + Vector3.up * hpBarOffset, Quaternion.identity);
-        //     hpBar.transform.SetParent(transform);
-        //     hpBar.SetActive(false);
-        // }
-        
-        hpBar = Instantiate(hpBarPrefab, transform.position + Vector3.up * hpBarOffset, Quaternion.identity);
-        hpBar.transform.SetParent(transform);
-        hpBar.SetActive(false);
+
+        if (resourceType != ResourceType.Bush)
+        {
+            hpBar = Instantiate(hpBarPrefab, transform.position + Vector3.up * hpBarOffset, Quaternion.identity);
+            hpBar.transform.SetParent(transform);
+            hpBar.SetActive(false);
+        }
         
     }
     
     public void TakeDamage(int damage)
     {
         hp -= damage;
-        hpBar.SetActive(true);
+        if (hpBar != null)
+        {
+            hpBar.SetActive(true);
+        }
+        
 
         if (hp <= 0)
         {
@@ -56,9 +57,9 @@ public class Resource : MonoBehaviour
     }
     
 
-    private void DoWhenHpZero()
+    protected virtual void DoWhenHpZero()
     {
-        ExplorInvenSO inventory = Resources.Load<ExplorInvenSO>("TrophyInven");
+        ExplorInvenSO inventory = Resources.Load<ExplorInvenSO>("TrophyInven");//
         
         inventory.AddItemSets(dropItems);
         Destroy(gameObject);

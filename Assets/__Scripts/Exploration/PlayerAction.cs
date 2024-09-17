@@ -8,14 +8,17 @@ public class PlayerAction : MonoBehaviour
 {
     public bool foragingState = true;
 
-    private ItemSO heldItem;
+    public ItemSO heldItem;
     
     public BoxCollider2D boxCollider2D;
+    
     public Button actBtn;
     public Image actBtnImage;
+    public Button cancelBtn;
     
     private Resource resource;
     private List<Resource> resourceList = new List<Resource>();
+    
     
     
 
@@ -23,6 +26,7 @@ public class PlayerAction : MonoBehaviour
     private void Start()
     {
         actBtn.onClick.AddListener(UseTool);
+        cancelBtn.onClick.AddListener(() => foragingState = true);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -31,13 +35,13 @@ public class PlayerAction : MonoBehaviour
         {
             resource = other.GetComponent<Resource>();
             resourceList.Add(resource);
-
+            
+            
             heldItem = resource.requiredTool;
 
             if (heldItem != null)
             {
-                actBtnImage.sprite = heldItem.icon;
-                actBtn.interactable = true;
+                actBtnImage.sprite = resource.requiredTool.icon;
             }
             
             
@@ -46,9 +50,11 @@ public class PlayerAction : MonoBehaviour
     
     private void UseTool()
     {
+        
         if (heldItem is ToolSO tool)
         {
             tool.Use(resource);
+            
         }
         
     }
@@ -61,7 +67,7 @@ public class PlayerAction : MonoBehaviour
         {
             resourceList.Remove(other.GetComponent<Resource>());
             
-            if (resourceList.Count > 0)
+            if (resourceList.Count > 0 && foragingState)
             {
                 resource = resourceList[0];
                 
@@ -69,15 +75,12 @@ public class PlayerAction : MonoBehaviour
                 
                 if (heldItem != null)
                 {
-                    actBtnImage.sprite = heldItem.icon;
-                    actBtn.interactable = true;
+                    actBtnImage.sprite = resource.requiredTool.icon;
                 }
             }
             else
             {
                 actBtnImage.sprite = null;
-                heldItem = null;
-                actBtn.interactable = false;
             }
             
         }

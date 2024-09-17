@@ -11,8 +11,4 @@ public class MeleeWeaponSO : WeaponSO
         weaponType = WeaponType.Melee;
     }
     
-    protected override void Attack(WildAnimal animal)
-    {
-        Debug.Log("Melee Attack");
-    }
 }

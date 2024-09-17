@@ -14,13 +14,13 @@ public class ToolSO : ItemSO
     public int damage;  // 強度，單次使用造成的傷害
     public int durability;  // 耐久度，使用一次減一
     
-    public virtual void Use(Resource resource)
+    public void Use(Resource resource)
     {
         ExplorInvenSO inventory = Resources.Load<ExplorInvenSO>("TrophyInven");
         
-        ItemSet toolItemSet = inventory.ItemSets.Find(i => i.item == this);//
+        ItemSet toolItemSet = inventory.ItemSets.Find(i => i.item == this);//todo:equip
         
-        if (resource.resourceType == handlingSourceType && toolItemSet != null)
+        if ((resource.resourceType == handlingSourceType || resource.resourceType == ResourceType.Animal) && toolItemSet != null)
         {
             
             resource.TakeDamage(damage);

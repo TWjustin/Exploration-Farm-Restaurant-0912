@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 [CreateAssetMenu(fileName = "New Inventory", menuName = "Inventory/Inventory")]
 public class InventorySO : ScriptableObject
@@ -33,7 +32,7 @@ public class InventorySO : ScriptableObject
         {
             item = item,
             num = num, 
-            durability = item is ToolSO tool ? tool.durability : 0
+            durability = item is ToolSO tool ? tool.durability : 0,
         };
         
         ItemSets.Add(newItemSet);
@@ -66,19 +65,11 @@ public class InventorySO : ScriptableObject
         return false;
         
     }
-    
-    public ItemSet FindItemSet(ItemSO item)
-    {
-        foreach (var i in ItemSets)
-        {
-            if (i.item == item)
-            {
-                return i;
-            }
-        }
 
-        Debug.Log("Item not found");
-        return null;
+    public void DiscardItem(SlotUI slot)
+    {
+        ItemSets.Remove(slot.itemSet);
+        CallUpdateInven();
     }
 
     

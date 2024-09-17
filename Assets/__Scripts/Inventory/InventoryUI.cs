@@ -31,7 +31,7 @@ public class InventoryUI : MonoBehaviour
         {
             GameObject slot = Instantiate(slotPrefab, content);
             ItemSet itemSet = inventory.ItemSets[i];
-            slot.GetComponent<SlotUI>().UpdateSlot(itemSet.item, itemSet.num);
+            slot.GetComponent<SlotUI>().UpdateSlot(itemSet);
         }
     }
     
