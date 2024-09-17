@@ -6,35 +6,38 @@ using UnityEngine;
 public class InventoryUI : MonoBehaviour
 {
     
-    public ItemSO[] testItems;
-    
+    public ItemSO[] testItems;  // test
     
     
     
     public InventorySO inventory;
+    public Transform content;
     public GameObject slotPrefab;
-
-
-    private void OnEnable()
+    
+    
+    private void Awake()
     {
-        UpdateInven();
+        inventory.OnItemChanged += UpdateInven;
     }
+
     
 
-    public void UpdateInven()
+    private void UpdateInven()
     {
         ClearInven();
+        Debug.Log("UpdateInven");
         
-        for (int i = 0; i < inventory.itemSets.Count; i++)
+        for (int i = 0; i < inventory.ItemSets.Count; i++)
         {
-            GameObject slot = Instantiate(slotPrefab, transform);
-            slot.GetComponent<SlotUI>().UpdateSlot(inventory.itemSets[i].item, inventory.itemSets[i].num);
+            GameObject slot = Instantiate(slotPrefab, content);
+            ItemSet itemSet = inventory.ItemSets[i];
+            slot.GetComponent<SlotUI>().UpdateSlot(itemSet.item, itemSet.num);
         }
     }
     
     private void ClearInven()
     {
-        foreach (Transform child in transform)
+        foreach (Transform child in content)
         {
             Destroy(child.gameObject);
         }
@@ -45,7 +48,6 @@ public class InventoryUI : MonoBehaviour
     public void Test()
     {
         inventory.AddItem(testItems[0], 9);
-        UpdateInven();
     }
     
 }

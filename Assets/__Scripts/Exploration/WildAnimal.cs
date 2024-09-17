@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class WildAnimal : Resource
 {
-    public int hp;
-    public bool isHostile;
+    public bool isHostile;//
     public int atk;
     
     public float speed = 0.7f;
@@ -13,9 +12,7 @@ public class WildAnimal : Resource
     private Vector2 moveDirection;
     private float timer;
     public float changeDirectionTime = 2f;
-    
-    public GameObject hpBarPrefab;
-    public float hpBarOffset = 1f;
+
 
     public ItemSet prey;
 
@@ -23,14 +20,10 @@ public class WildAnimal : Resource
     {
         resourceType = ResourceType.Animal;
         
-        GameObject hpBar = Instantiate(hpBarPrefab, transform.position + Vector3.up * hpBarOffset, Quaternion.identity);
-        hpBar.transform.SetParent(transform);
-        hpBar.SetActive(false);
-        
         MoveRandomly();
     }
 
-    // 狀態: idle, walk, run, attack, faint, die
+    // 狀態: idle, walk, run, hurt, attack, faint, die
     
     void Update()
     {
@@ -75,13 +68,4 @@ public class WildAnimal : Resource
     }
     
     
-    public void TakeDamage(int damage)
-    {
-        hp -= damage;
-        if (hp <= 0)
-        {
-            // Faint();
-            Debug.Log("Faint");
-        }
-    }
 }

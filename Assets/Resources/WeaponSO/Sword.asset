@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3655a691a7290024cb62fb34d4c05427, type: 3}
+  m_Script: {fileID: 11500000, guid: fd93bbab3bd69f046ad46c951148582c, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
   itemName: 
@@ -18,6 +18,7 @@ MonoBehaviour:
   itemType: 0
   stackable: 0
   toolType: 0
-  strength: 4
-  efficiency: 0
-  durability: 0
+  handlingSourceType: 0
+  damage: 8
+  durability: 10
+  weaponType: 0

@@ -9,7 +9,7 @@ public class ExploGameManager : MonoBehaviour
 
     private void Start()
     {
+        inventoryGameObject.GetComponentInParent<InventoryUI>().inventory.ItemSets = new List<ItemSet>();
         inventoryGameObject.SetActive(false);
-        inventoryGameObject.GetComponentInChildren<InventoryUI>().inventory.itemSets = new List<ItemSet>();
     }
 }

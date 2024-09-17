@@ -24,6 +24,18 @@ public class PlayerMovement : MonoBehaviour
         float moveY = Input.GetAxisRaw("Vertical");
         
         moveDirection = new Vector2(moveX, moveY).normalized;
+
+
+        switch (moveX)
+        {
+            case 1:
+                transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case -1:
+                transform.localScale = new Vector3(-1, 1, 1);
+                break;
+        }
+        
     }
     
     private void FixedUpdate()

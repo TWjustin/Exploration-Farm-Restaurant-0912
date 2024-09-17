@@ -24,7 +24,7 @@ public class ExplorInvenSO : InventorySO
     {
         if (item.stackable)
         {
-            foreach (var i in itemSets)
+            foreach (var i in ItemSets)
             {
                 if (i.item == item)
                 {
@@ -49,7 +49,7 @@ public class ExplorInvenSO : InventorySO
     
     private void NewItemSet(ItemSO item, int num)
     {
-        if (itemSets.Count < maxSlot)
+        if (ItemSets.Count < maxSlot)
         {
             ItemSet newItemSet = new ItemSet
             {
@@ -57,7 +57,8 @@ public class ExplorInvenSO : InventorySO
                 num = num
             };
         
-            itemSets.Add(newItemSet);
+            ItemSets.Add(newItemSet);
+            CallUpdateInven();
         }
         else
         {
@@ -67,24 +68,5 @@ public class ExplorInvenSO : InventorySO
         
     }
     
-    public override bool RemoveItem(ItemSO item, int num)
-    {
-        foreach (var i in itemSets)
-        {
-            if (i.item == item)
-            {
-                i.num -= num;
-                if (i.num <= 0)
-                {
-                    itemSets.Remove(i);
-                    return true;
-                }
-                
-                return true;
-            }
-        }
-
-        Debug.Log("Item not found");
-        return false;
-    }
+    
 }

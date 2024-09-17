@@ -10,7 +10,7 @@ public class ScytheSO : ToolSO
     
     private void Awake()
     {
-        handlingesourceType = ResourceType.Bush;
+        handlingSourceType = ResourceType.Bush;
     }
 
     

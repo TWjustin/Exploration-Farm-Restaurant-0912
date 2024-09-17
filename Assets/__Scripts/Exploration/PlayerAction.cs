@@ -6,55 +6,38 @@ using UnityEngine.UI;
 
 public class PlayerAction : MonoBehaviour
 {
+    public bool foragingState = true;
 
     private ItemSO heldItem;
-    public ToolSO scythe;   // test
-    public ToolSO axe;   // test
-    public ToolSO pickaxe;   // test
     
     public BoxCollider2D boxCollider2D;
     public Button actBtn;
     public Image actBtnImage;
     
     private Resource resource;
-    private List<Resource> resources = new List<Resource>();
+    private List<Resource> resourceList = new List<Resource>();
     
     
 
 
     private void Start()
     {
-        heldItem = scythe;
-        
         actBtn.onClick.AddListener(UseTool);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Interactable"))
+        if (other.CompareTag("Interactable") && foragingState)
         {
             resource = other.GetComponent<Resource>();
-            resources.Add(resource);
-            
-            switch (resource.resourceType)
-            {
-                case ResourceType.Bush:
-                    heldItem = scythe;
-                    break;
-                case ResourceType.Tree:
-                    heldItem = axe;
-                    break;
-                case ResourceType.Rock:
-                    heldItem = pickaxe;
-                    break;
-                default:
-                    heldItem = null;
-                    break;
-            }
+            resourceList.Add(resource);
+
+            heldItem = resource.requiredTool;
 
             if (heldItem != null)
             {
                 actBtnImage.sprite = heldItem.icon;
+                actBtn.interactable = true;
             }
             
             
@@ -63,43 +46,38 @@ public class PlayerAction : MonoBehaviour
     
     private void UseTool()
     {
-        (heldItem as ToolSO)?.Use(resource);
+        if (heldItem is ToolSO tool)
+        {
+            tool.Use(resource);
+        }
+        
     }
+    
+    
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Interactable"))
         {
-            resources.Remove(other.GetComponent<Resource>());
+            resourceList.Remove(other.GetComponent<Resource>());
             
-            if (resources.Count > 0)
+            if (resourceList.Count > 0)
             {
-                resource = resources[0];
-                switch (resource.resourceType)
-                {
-                    case ResourceType.Bush:
-                        heldItem = scythe;
-                        break;
-                    case ResourceType.Tree:
-                        heldItem = axe;
-                        break;
-                    case ResourceType.Rock:
-                        heldItem = pickaxe;
-                        break;
-                    default:
-                        heldItem = null;
-                        break;
-                }
+                resource = resourceList[0];
+                
+                heldItem = resource.requiredTool;
                 
                 if (heldItem != null)
                 {
                     actBtnImage.sprite = heldItem.icon;
+                    actBtn.interactable = true;
                 }
             }
             else
             {
                 actBtnImage.sprite = null;
                 heldItem = null;
+                actBtn.interactable = false;
             }
             
         }
